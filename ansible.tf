@@ -4,6 +4,7 @@ resource "github_repository" "ansible" {
   name        = "ansible-role-${each.value.name}"
   description = each.value.description
   topics      = each.value.topics
+  homepage_url = each.value.homepage_url
   visibility  = each.value.visibility
   archived    = each.value.archived
 
@@ -27,6 +28,7 @@ variable "repos" {
     name        = string
     description = string
     topics      = list(string)
+    homepage_url = string
     visibility  = string
     galaxy      = bool
     archived    = bool
@@ -37,6 +39,7 @@ variable "repos" {
       description = "Ansible role for pushing targets to prometheus instance"
       topics = ["ansible", "role", "galaxy", "prometheus", "monitoring",
       "metrics", "prometheus-exporter", "node-exporter"]
+      homepage_url = "https://galaxy.ansible.com/kliwniloc/prometheus_target"
       visibility = "public"
       galaxy     = true
       archived   = false
@@ -45,6 +48,7 @@ variable "repos" {
       name        = "borgbackup"
       description = "Ansible role for deploying borgbackup on client and server"
       topics      = ["ansible", "role", "galaxy", "backup", "borgbackup"]
+      homepage_url = "https://galaxy.ansible.com/kliwniloc/borgbackup"
       visibility  = "private"
       galaxy      = false
       archived    = false
