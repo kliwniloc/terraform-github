@@ -7,5 +7,7 @@ resource "github_repository" "terraform-github" {
   archived   = false
 
   has_discussions = false
+  has_projects    = false
   has_issues      = true
+  homepage_url    = "https://github.com/kliwniloc"
 }
