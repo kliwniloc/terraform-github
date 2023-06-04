@@ -1,5 +1,5 @@
 resource "github_repository" "ansible" {
-  for_each = { for idx, repo in var.repos : idx => repo }
+  for_each = { for repo in var.repos : repo.name => repo }
 
   name         = "ansible-role-${each.value.name}"
   description  = each.value.description
@@ -16,7 +16,7 @@ resource "github_repository" "ansible" {
 }
 
 resource "github_actions_secret" "example_secret" {
-  for_each = { for idx, repo in var.repos : idx => repo if repo.galaxy }
+  for_each = { for repo in var.repos : repo.name => repo if repo.galaxy }
 
   repository      = "ansible-role-${each.value.name}"
   secret_name     = "GALAXY_API_KEY"
