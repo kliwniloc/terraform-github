@@ -16,7 +16,7 @@ resource "github_repository" "ansible" {
 }
 
 resource "github_actions_secret" "example_secret" {
-  for_each = { for repo in var.repos : repo.name => repo if repo.galaxy }
+  for_each = { for repo in var.repos : repo.name => repo if repo.visibility == "public" }
 
   repository      = "ansible-role-${each.value.name}"
   secret_name     = "GALAXY_API_KEY"
@@ -30,7 +30,6 @@ variable "repos" {
     topics       = list(string)
     homepage_url = string
     visibility   = string
-    galaxy       = bool
     archived     = bool
   }))
   default = [
@@ -40,7 +39,6 @@ variable "repos" {
       topics       = ["ansible", "role", "galaxy", "prometheus", "monitoring", "metrics", "prometheus-exporter", "node-exporter"]
       homepage_url = "https://galaxy.ansible.com/kliwniloc/prometheus_target"
       visibility   = "public"
-      galaxy       = true
       archived     = false
     },
     {
@@ -49,7 +47,6 @@ variable "repos" {
       topics       = ["ansible", "role", "galaxy", "backup", "borgbackup"]
       homepage_url = "https://galaxy.ansible.com/kliwniloc/borgbackup"
       visibility   = "private"
-      galaxy       = false
       archived     = false
     },
   ]
