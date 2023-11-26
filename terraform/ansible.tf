@@ -46,7 +46,7 @@ variable "repos" {
       description  = "Ansible role for deploying borgbackup on client and server"
       topics       = ["ansible", "role", "galaxy", "backup", "borgbackup"]
       homepage_url = "https://galaxy.ansible.com/kliwniloc/borgbackup"
-      visibility   = "private"
+      visibility   = "public"
       archived     = false
     },
   ]
